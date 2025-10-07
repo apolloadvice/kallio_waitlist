@@ -4,6 +4,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const waitlistSchema = z.object({
+  firstName: z.string().trim().min(1, "First name is required").max(100),
+  lastName: z.string().trim().min(1, "Last name is required").max(100),
+  email: z.string().trim().email("Invalid email address").max(255),
+  category: z.string().min(1, "Please select a category"),
+});
 
 const WaitlistForm = () => {
   const [formData, setFormData] = useState({
@@ -14,42 +23,63 @@ const WaitlistForm = () => {
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.category) {
+    try {
+      // Validate input
+      const validatedData = waitlistSchema.parse(formData);
+
+      // Insert into database
+      const { error } = await supabase
+        .from("waitlist_signups")
+        .insert({
+          first_name: validatedData.firstName,
+          last_name: validatedData.lastName,
+          email: validatedData.email,
+          who_are_you: validatedData.category,
+        });
+
+      if (error) {
+        if (error.code === "23505") {
+          toast({
+            variant: "destructive",
+            title: "Already signed up",
+            description: "This email is already on our waitlist!",
+          });
+        } else {
+          throw error;
+        }
+        return;
+      }
+
       toast({
-        title: "Missing Information",
-        description: "Please fill in all fields",
-        variant: "destructive"
+        title: "You're on the list!",
+        description: "We'll be in touch soon with early access.",
       });
-      return;
-    }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address",
-        variant: "destructive"
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        category: ""
       });
-      return;
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          variant: "destructive",
+          title: "Validation error",
+          description: error.errors[0].message,
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+        });
+      }
     }
-
-    toast({
-      title: "You're on the list!",
-      description: "We'll be in touch soon with early access.",
-    });
-
-    // Reset form
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      category: ""
-    });
   };
 
   return (
