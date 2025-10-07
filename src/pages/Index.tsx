@@ -2,11 +2,14 @@ import { MessageSquare, Brain, TrendingUp } from "lucide-react";
 import WaitlistForm from "@/components/WaitlistForm";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import FeatureCard from "@/components/FeatureCard";
+import ThemeToggle from "@/components/ThemeToggle";
 import kallioLogo from "@/assets/kallio-logo.png";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <ThemeToggle />
+      
       {/* Gradient overlay effects */}
       <div className="fixed inset-0 bg-gradient-radial opacity-30 pointer-events-none" />
       <div className="fixed top-0 right-0 w-1/2 h-1/2 bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
