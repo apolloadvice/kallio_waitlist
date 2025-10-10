@@ -41,12 +41,11 @@ const Index = () => {
             <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
               <iframe 
                 className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
-                src="https://www.youtube.com/embed/OXNGut_Z3EA?si=smDH586XJKuyRcWf" 
-                title="YouTube video player" 
+                src="https://www.youtube.com/embed/OXNGut_Z3EA?autoplay=1&mute=1&loop=1&playlist=OXNGut_Z3EA&controls=0&showinfo=0&modestbranding=1&rel=0" 
+                title="Kallio demo video" 
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerPolicy="strict-origin-when-cross-origin" 
-                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
               />
             </div>
           </div>
