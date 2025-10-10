@@ -36,6 +36,21 @@ const Index = () => {
             </p>
           </div>
 
+          {/* Demo Video */}
+          <div className="mb-12 max-w-4xl mx-auto px-4">
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe 
+                className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                src="https://www.youtube.com/embed/OXNGut_Z3EA?si=smDH586XJKuyRcWf" 
+                title="YouTube video player" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin" 
+                allowFullScreen
+              />
+            </div>
+          </div>
+
           {/* Counter */}
           <div className="mb-16">
             <AnimatedCounter target={298} duration={2500} />
