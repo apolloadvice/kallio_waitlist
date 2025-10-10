@@ -38,14 +38,15 @@ const Index = () => {
 
           {/* Demo Video */}
           <div className="mb-12 max-w-4xl mx-auto px-4">
-            <div style={{ position: 'relative', width: '100%', height: 0, paddingBottom: '56.250%' }} className="rounded-lg shadow-lg overflow-hidden">
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
               <iframe 
-                allow="fullscreen" 
-                allowFullScreen 
-                height="100%" 
-                src="https://streamable.com/e/wezd20?" 
-                width="100%" 
-                style={{ border: 'none', width: '100%', height: '100%', position: 'absolute', left: 0, top: 0, overflow: 'hidden' }}
+                className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                src="https://www.youtube.com/embed/OXNGut_Z3EA?si=smDH586XJKuyRcWf" 
+                title="YouTube video player" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin" 
+                allowFullScreen
               />
             </div>
           </div>
