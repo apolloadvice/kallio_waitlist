@@ -38,14 +38,14 @@ const Index = () => {
 
           {/* Demo Video */}
           <div className="mb-12 max-w-4xl mx-auto px-4">
-            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            <div style={{ position: 'relative', width: '100%', height: 0, paddingBottom: '56.250%' }} className="rounded-lg shadow-lg overflow-hidden">
               <iframe 
-                className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
-                src="https://www.youtube.com/embed/OXNGut_Z3EA?autoplay=1&mute=1&loop=1&playlist=OXNGut_Z3EA&controls=0&showinfo=0&modestbranding=1&rel=0" 
-                title="Kallio demo video" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerPolicy="strict-origin-when-cross-origin"
+                allow="fullscreen" 
+                allowFullScreen 
+                height="100%" 
+                src="https://streamable.com/e/wezd20?" 
+                width="100%" 
+                style={{ border: 'none', width: '100%', height: '100%', position: 'absolute', left: 0, top: 0, overflow: 'hidden' }}
               />
             </div>
           </div>
