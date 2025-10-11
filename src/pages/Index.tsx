@@ -26,14 +26,11 @@ const Index = () => {
               className="w-24 h-24 mx-auto mb-8 animate-float"
             />
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
-              AI Video Editing,
+              Your AI Video Editor
               <br />
-              <span className="bg-gradient-primary bg-clip-text text-transparent bg-200% animate-gradient-shift">
-                Redefined
-              </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12">
-              Just tell us what you want. Kallio understands your vision and edits videos like a pro.
+              Just tell Kallio what you want. Kallio understands your vision and edits videos.
             </p>
           </div>
 
@@ -53,7 +50,7 @@ const Index = () => {
 
           {/* Counter */}
           <div className="mb-16">
-            <AnimatedCounter target={298} duration={2500} />
+            <AnimatedCounter target={594} duration={2500} />
           </div>
 
           {/* Waitlist Form */}
@@ -77,7 +74,7 @@ const Index = () => {
             <FeatureCard
               icon={<MessageSquare size={40} />}
               title="Just Chat & Create"
-              description="Tell Kallio what you want in plain English. No complex timelines or tools—just describe your vision and watch it come to life."
+              description="Tell Kallio what you want in plain English. Just describe your vision and watch it come to life."
               delay={0}
             />
             <FeatureCard
@@ -89,7 +86,7 @@ const Index = () => {
             <FeatureCard
               icon={<TrendingUp size={40} />}
               title="Learns Your Style"
-              description="The more you use Kallio, the better it gets. It analyzes your past videos and social media to match your unique editing style perfectly."
+              description="The more you use Kallio, the better it gets. It analyzes your past videos and social media to match your unique editing style."
               delay={400}
             />
           </div>
@@ -98,7 +95,7 @@ const Index = () => {
         {/* Footer */}
         <footer className="container mx-auto px-4 py-12 text-center">
           <p className="text-muted-foreground">
-            © 2025 Kallio. Revolutionizing video editing with AI.
+            © 2025 Kallio. Create More.
           </p>
         </footer>
       </div>

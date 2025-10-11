@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabase";
 
 const WaitlistForm = () => {
   const [formData, setFormData] = useState({
@@ -13,8 +14,9 @@ const WaitlistForm = () => {
     category: ""
   });
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -38,18 +40,47 @@ const WaitlistForm = () => {
       return;
     }
 
-    toast({
-      title: "You're on the list!",
-      description: "We'll be in touch soon with early access.",
-    });
+    try {
+      setIsSubmitting(true);
+      const payload = {
+        first_name: formData.firstName.trim(),
+        last_name: formData.lastName.trim(),
+        email: formData.email.trim().toLowerCase(),
+        category: formData.category,
+      };
 
-    // Reset form
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      category: ""
-    });
+      const { error } = await supabase.from("waitlist_signups").insert(payload);
+
+      if (error) {
+        if ((error as any).code === "23505") {
+          toast({
+            title: "Already signed up",
+            description: "This email is already on the waitlist.",
+          });
+        } else {
+          toast({
+            title: "Something went wrong",
+            description: "Please try again in a moment.",
+            variant: "destructive",
+          });
+        }
+        return;
+      }
+
+      toast({
+        title: "You're on the list!",
+        description: "We'll be in touch soon with early access.",
+      });
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        category: ""
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -62,7 +93,7 @@ const WaitlistForm = () => {
             value={formData.firstName}
             onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
             className="bg-card border-border focus:ring-primary"
-            placeholder="John"
+            placeholder="First Name"
           />
         </div>
         <div className="space-y-2">
@@ -72,7 +103,7 @@ const WaitlistForm = () => {
             value={formData.lastName}
             onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
             className="bg-card border-border focus:ring-primary"
-            placeholder="Doe"
+            placeholder="Last Name"
           />
         </div>
       </div>
@@ -85,7 +116,7 @@ const WaitlistForm = () => {
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           className="bg-card border-border focus:ring-primary"
-          placeholder="john@example.com"
+          placeholder="kallio@example.com"
         />
       </div>
 
@@ -108,9 +139,10 @@ const WaitlistForm = () => {
 
       <Button 
         type="submit" 
+        disabled={isSubmitting}
         className="w-full bg-gradient-primary text-primary-foreground hover:opacity-90 transition-opacity font-semibold text-lg py-6"
       >
-        Join the Waitlist
+        {isSubmitting ? "Joining..." : "Join the Waitlist"}
       </Button>
     </form>
   );
