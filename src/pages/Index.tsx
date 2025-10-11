@@ -70,7 +70,7 @@ const Index = () => {
 
           {/* Counter */}
           <div className="mb-16">
-            <AnimatedCounter target={(590 + (signupCount ?? 0))} duration={2500} />
+            <AnimatedCounter target={(90 + (signupCount ?? 0))} duration={2500} />
           </div>
 
           {/* Waitlist Form */}
