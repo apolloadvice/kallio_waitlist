@@ -1,4 +1,6 @@
 import { MessageSquare, Brain, TrendingUp } from "lucide-react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 import WaitlistForm from "@/components/WaitlistForm";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import FeatureCard from "@/components/FeatureCard";
@@ -7,6 +9,24 @@ import FlashingCommands from "@/components/FlashingCommands";
 import kallioLogo from "@/assets/kallio-logo.png";
 
 const Index = () => {
+  const [signupCount, setSignupCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    (async () => {
+      const { data, error } = await supabase.rpc("waitlist_signup_count");
+      if (!isMounted) return;
+      if (error) {
+        // Fallback: keep base only if error
+        setSignupCount(0);
+        return;
+      }
+      setSignupCount(typeof data === "number" ? data : 0);
+    })();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       <ThemeToggle />
@@ -50,7 +70,7 @@ const Index = () => {
 
           {/* Counter */}
           <div className="mb-16">
-            <AnimatedCounter target={594} duration={2500} />
+            <AnimatedCounter target={(590 + (signupCount ?? 0))} duration={2500} />
           </div>
 
           {/* Waitlist Form */}

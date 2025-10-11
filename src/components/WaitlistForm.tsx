@@ -127,11 +127,11 @@ const WaitlistForm = () => {
             <SelectValue placeholder="Select your category" />
           </SelectTrigger>
           <SelectContent className="bg-card border-border">
+            <SelectItem value="creator">Creator</SelectItem>
+            <SelectItem value="marketing">Marketing</SelectItem>
             <SelectItem value="business-owner">Business Owner</SelectItem>
-            <SelectItem value="influencer">Influencer</SelectItem>
-            <SelectItem value="solo-creator">Solo Creator</SelectItem>
-            <SelectItem value="content-team">Content Team</SelectItem>
-            <SelectItem value="agency">Agency</SelectItem>
+            <SelectItem value="ad-agency">Ad Agency</SelectItem>
+            <SelectItem value="film-maker">Film Maker</SelectItem>
             <SelectItem value="other">Other</SelectItem>
           </SelectContent>
         </Select>

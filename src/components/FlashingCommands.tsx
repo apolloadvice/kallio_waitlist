@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 const commands = [
-  "trim the dead space in all the clips",
-  "add viral story telling captions that match the vibe of the video",
-  "cut out all the parts when I'm in the water",
+  "Trim the dead space in all the clips",
+  "Add viral story telling captions that match the vibe of the video",
+  "Cut out all the parts when I'm in the water",
 ];
 
 const FlashingCommands = () => {
