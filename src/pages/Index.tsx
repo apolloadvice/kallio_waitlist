@@ -45,12 +45,12 @@ const Index = () => {
               alt="Kallio" 
               className="w-24 h-24 mx-auto mb-8 animate-float"
             />
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
+            <h1 className="text-5xl md:text-7xl font-display font-normal leading-tight tracking-tight mb-6 text-foreground">
               Your AI Video Editor
               <br />
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12">
-              Just tell Kallio what you want. Kallio understands your vision and edits videos.
+              Just tell Kallio what you want. Kallio understands your vision and edits your videos.
             </p>
           </div>
 
@@ -58,11 +58,12 @@ const Index = () => {
           <div className="mb-12 max-w-4xl mx-auto px-4">
             <div style={{ position: 'relative', width: '100%', height: 0, paddingBottom: '56.250%' }} className="rounded-lg shadow-lg overflow-hidden">
               <iframe 
-                allow="fullscreen" 
-                allowFullScreen 
-                height="100%" 
-                src="https://streamable.com/e/wezd20?" 
-                width="100%" 
+                allowFullScreen
+                src="https://player.vimeo.com/video/1127341094?autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0&badge=0&dnt=1"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="demoFINALv2"
                 style={{ border: 'none', width: '100%', height: '100%', position: 'absolute', left: 0, top: 0, overflow: 'hidden' }}
               />
             </div>
@@ -91,7 +92,7 @@ const Index = () => {
           <FlashingCommands />
           
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <FeatureCard
+            <FeatureCard 
               icon={<MessageSquare size={40} />}
               title="Just Chat & Create"
               description="Tell Kallio what you want in plain English. Just describe your vision and watch it come to life."
